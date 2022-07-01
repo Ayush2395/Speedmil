@@ -1,0 +1,145 @@
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+@function tint-color($primary, $weight) {
+  @return (white, $primary, $weight);
+}
+
+// Default variable overrides
+$primary: #eeae1f;
+$secondary: #f5b379;
+$info: #c7bdad;
+$success: #67aea5;
+$body-bg: #fff;
+$light: $body-bg;
+$gray: #545d5a;
+$shadow-outer: 0 1px 8px rgba(0, 0, 0, 0.2);
+$shadow-spread: 0 0 8px 5px rgba(0, 0, 0, 0.09);
+$shadow-inner: 2px 2px 8px rgba(0, 0, 0, 0.2) inset;
+
+$theme-colors: (
+  "primary": $primary,
+  "dark": #000,
+  "light": $light,
+);
+
+@import url("../node_modules/bootstrap/scss/bootstrap.scss");
+
+// Required
+@import "../node_modules/bootstrap/scss/variables";
+// @import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+body {
+  background: $body-bg;
+}
+
+section {
+  min-height: 100vh;
+}
+
+.main {
+  position: relative;
+  top: 10vh;
+}
+
+.btn {
+  border-radius: 30px;
+  background-color: transparent;
+  color: black;
+  border: 2px solid black;
+  width: 150px;
+}
+
+.btn:hover {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid black;
+}
+
+.btn_2 {
+  background-color: transparent;
+  border: 4px solid $success;
+  color: $primary;
+  transition: transform 0.3s ease;
+}
+
+.btn_2:hover {
+  transform: translateY(5px);
+  background-color: transparent;
+  border: 4px solid $success;
+  color: $primary;
+}
+
+.up_arrow {
+  height: 45px;
+  width: 45px;
+  border: 2px solid $gray;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  color: $secondary;
+  font-size: 20px;
+  transform: translateX(-250%);
+  transition: transform 0.3s ease;
+}
+
+.up_arrow.show_arrow {
+  transform: translateX(0);
+  background-color: #fff;
+}
+
+.up_arrow:hover {
+  color: $secondary;
+}
+
+// navbar
+
+.nav_menu {
+  width: 100%;
+}
+
+.navbar {
+  box-shadow: $shadow-outer;
+}
+
+//home page
+.home_intro {
+  margin-top: 350px;
+}
+
+.home_intro p {
+  text-align: justify;
+}
+
+.home_img {
+  width: 450px;
+}
+
+// Explore page
+// card
+.card_icons {
+  height: 45px;
+  width: 45px;
+  box-shadow: $shadow-inner;
+  color: $gray;
+  font-size: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body {
+  transition: box-shadow 0.3s ease;
+}
+
+.card-body:hover {
+  box-shadow: $shadow-spread;
+  border: none;
+  outline: none;
+}

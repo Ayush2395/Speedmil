@@ -1,0 +1,11 @@
+@media screen and (max-width: 992px) {
+  .home_img {
+    width: 350px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home_img {
+    width: 250px !important;
+  }
+}
