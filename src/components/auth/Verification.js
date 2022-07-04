@@ -1,20 +1,9 @@
-import { onAuthStateChanged } from "firebase/auth";
-import React, { useEffect } from "react";
 import { Card, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../backend/firebase.config";
 import { useAppState } from "../../context/AppState";
 
 export default function Verification() {
   const { user } = useAppState();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, () => {
-      if (!user.emailVerified) navigate("/verify");
-      else if (user.emailVerified) navigate("/");
-    });
-  }, [user]);
   return (
     <>
       <section>

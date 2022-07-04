@@ -2,8 +2,10 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  RecaptchaVerifier,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  signInWithPhoneNumber,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -37,9 +39,19 @@ export default function AppState({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+    return await signInWithPopup(auth, provider).then(() => {
+      if (!auth.currentUser.emailVerified) {
+        sendEmailVerification(auth.currentUser);
+      }
+    });
+  };
+
+  const phoneOTPlogin = (phoneNumber) => {
+    const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
+    recaptchaVerifier.render();
+    return signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
   };
 
   const userLogOut = () => {
@@ -55,7 +67,6 @@ export default function AppState({ children }) {
     });
   }, []);
 
-
   return (
     <>
       <API.Provider
@@ -68,6 +79,7 @@ export default function AppState({ children }) {
           loginUser,
           googleSignIn,
           handleErrorMessage,
+          phoneOTPlogin,
         }}
       >
         {children}

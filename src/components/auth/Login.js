@@ -163,6 +163,9 @@ export default function Login() {
                   style={{ borderRadius: "50%", padding: "5px" }}
                 />
                 <FontAwesomeIcon
+                  onClick={() => {
+                    navigate("/otplogin");
+                  }}
                   className="btn_2"
                   icon="fa-solid fa-phone-flip"
                   size={"2x"}

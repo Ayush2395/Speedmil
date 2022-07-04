@@ -23,6 +23,7 @@ import Login from "./components/auth/Login";
 import AppState from "./context/AppState";
 import Register from "./components/auth/Register";
 import Verification from "./components/auth/Verification";
+import OTPlogin from "./components/auth/OTPlogin";
 library.add(
   faArrowUp,
   faTruckFast,
@@ -52,6 +53,7 @@ export default function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/verify" element={<Verification />} />
+              <Route path="/otplogin" element={<OTPlogin />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </Container>
