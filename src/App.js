@@ -13,9 +13,16 @@ import {
   faCircleQuestion,
   faExclamationTriangle,
   faMoneyBillWave,
+  faPhoneFlip,
   faTruckFast,
+  faEye,
+  faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import Error from "./components/Error";
+import Login from "./components/auth/Login";
+import AppState from "./context/AppState";
+import Register from "./components/auth/Register";
+import Verification from "./components/auth/Verification";
 library.add(
   faArrowUp,
   faTruckFast,
@@ -23,7 +30,10 @@ library.add(
   faCartArrowDown,
   faMoneyBillWave,
   faCircleQuestion,
-  faExclamationTriangle
+  faExclamationTriangle,
+  faPhoneFlip,
+  faEye,
+  faEyeSlash
 );
 
 export default function App() {
@@ -33,18 +43,23 @@ export default function App() {
   }, []);
   return (
     <>
-      <Router>
-        <NavMenu />
-        <Container>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </Container>
-      </Router>
-      <a href="#" rel="noreferrer" className="up_arrow">
-        <FontAwesomeIcon icon={faArrowUp} />
-      </a>
+      <AppState>
+        <Router>
+          <NavMenu />
+          <Container>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/verify" element={<Verification />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </Container>
+        </Router>
+        <a href="#" rel="noreferrer" className="up_arrow">
+          <FontAwesomeIcon icon={faArrowUp} />
+        </a>
+      </AppState>
     </>
   );
 }

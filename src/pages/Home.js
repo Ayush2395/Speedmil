@@ -1,10 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import React, { useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import intro from "../assets/img/home_landing_imgGroup.webp";
+import { auth } from "../backend/firebase.config";
 import Explore from "../components/Explore";
+import { useAppState } from "../context/AppState";
 
 export default function Home() {
+  const { user } = useAppState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, () => {
+      if (!user.emailVerified) navigate("/verify");
+      else if (user.emailVerified) navigate("/");
+    });
+  }, [user]);
   return (
     <>
       <section>

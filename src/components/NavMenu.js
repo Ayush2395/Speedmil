@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/img/speedmil.com.png";
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../backend/firebase.config";
+import { useAppState } from "../context/AppState";
 
 export default function NavMenu() {
+  const [switchBTN, setSwitchBTN] = useState(false);
+  const { userLogOut } = useAppState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      if (!currentUser) {
+        setSwitchBTN(false);
+      } else {
+        setSwitchBTN(true);
+      }
+    });
+  }, []);
+
+  const handleUserLogin = async () => {
+    try {
+      await userLogOut();
+      navigate("/login");
+    } catch (err) {
+      console.log(err.code);
+    }
+  };
+
   return (
     <>
       <Navbar className="navbar" fixed="top" bg="light" expand="lg">
@@ -21,9 +47,15 @@ export default function NavMenu() {
                 Shopping
               </Nav.Link>
             </Nav>
-            <Link to="/login" className="btn btn-primary">
-              Login
-            </Link>
+            {switchBTN ? (
+              <Button onClick={handleUserLogin} className="btn btn-primary">
+                Log Out
+              </Button>
+            ) : (
+              <Link to="/login" className="btn btn-primary">
+                Login
+              </Link>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
