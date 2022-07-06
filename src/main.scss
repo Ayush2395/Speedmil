@@ -1,8 +1,8 @@
 // Required
-@import "../node_modules/bootstrap/scss/functions";
 @function tint-color($primary, $weight) {
   @return (white, $primary, $weight);
 }
+@import "../node_modules/bootstrap/scss/functions";
 
 // Default variable overrides
 $primary: #eeae1f;
@@ -12,7 +12,7 @@ $success: #67aea5;
 $body-bg: #fff;
 $light: $body-bg;
 $gray: #545d5a;
-$shadow-outer: 0 1px 8px rgba(0, 0, 0, 0.2);
+$shadow-outer: 0 2px 8px rgba(0, 0, 0, 0.2);
 $shadow-spread: 0 0 8px 5px rgba(0, 0, 0, 0.09);
 $shadow-inner: 2px 2px 8px rgba(0, 0, 0, 0.2) inset;
 
@@ -26,7 +26,6 @@ $theme-colors: (
 
 // Required
 @import "../node_modules/bootstrap/scss/variables";
-// @import "../node_modules/bootstrap/scss/maps";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
 
@@ -103,8 +102,9 @@ section {
   width: 100%;
 }
 
-.navbar {
+.header {
   box-shadow: $shadow-outer;
+  transition: all 0.3s ease;
 }
 
 //home page

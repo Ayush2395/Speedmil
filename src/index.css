@@ -23,7 +23,7 @@ code {
 .rings .cirlces {
   height: 80px;
   width: 80px;
-  border: 5px solid black;
+  border: 5px solid #000;
   border-radius: 50%;
   position: absolute;
   bottom: -35px;

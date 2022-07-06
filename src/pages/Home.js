@@ -3,11 +3,26 @@ import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import intro from "../assets/img/home_landing_imgGroup.webp";
 import Explore from "../components/Explore";
+import { motion } from "framer-motion";
+
+const fadeInVariant = {
+  hide: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      type: "initial",
+      duration: 0.4,
+      delay: 0.3,
+    },
+  },
+};
 
 export default function Home() {
   return (
     <>
-      <section>
+      <motion.section variants={fadeInVariant} initial="hide" animate="visible">
         <div className="main">
           <Row className="align-items-md-center">
             <Col
@@ -43,7 +58,7 @@ export default function Home() {
             </Col>
           </Row>
         </div>
-      </section>
+      </motion.section>
       <Explore />
     </>
   );

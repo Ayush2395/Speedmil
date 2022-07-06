@@ -32,7 +32,7 @@ export default function NavMenu() {
 
   return (
     <>
-      <Navbar className="navbar" fixed="top" bg="light" expand="lg">
+      <Navbar fixed="top" bg="light" expand="lg" id="header">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img src={logo} alt="logo" height={50} />
@@ -40,11 +40,11 @@ export default function NavMenu() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="m-auto">
-              <Nav.Link as={NavLink} to="/">
+              <Nav.Link data-target=".navbar-collapse.show" as={NavLink} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/shopping">
-                Shopping
+              <Nav.Link as={NavLink} to="/dashboard">
+                Dashboard
               </Nav.Link>
             </Nav>
             {switchBTN ? (
